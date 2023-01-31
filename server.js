@@ -22,33 +22,33 @@ app.get('/api/notes', (req, res) => {
     readFromFile('./db/db.json').then((data)=> res.json(JSON.parse(data)))
 })
 
-// app.post('/api/notes', (req, res) =>{ 
-//     console.log(req.body)
-//    
-//     const {title, text} = req.body
+app.post('/api/notes', (req, res) =>{ 
+    console.log(req.body)
+   
+    const {title, text} = req.body
 
-//     console.log(req.body)
-//     let notesArr = []
-//     if(title && text){
-//         const newNote = {
-//             title,
-//             text,
-//             id: uuid()
-//         }
+    console.log(req.body)
+    let notesArr = []
+    if(title && text){
+        const newNote = {
+            title,
+            text,
+            id: uuid()
+        }
 
-//         readAndAppend(newNote, './db/db.json');
+        readAndAppend(newNote, './db/db.json');
 
-//         const response = {
-//             status: 'success',
-//             body: newNote,
-//         };
-//         console.log(response)
-//         res.status(201).json(response)
-//     }else{
-//         res.status(500).json('Error adding new note')
-//     }
+        const response = {
+            status: 'success',
+            body: newNote,
+        };
+        console.log(response)
+        res.status(201).json(response)
+    }else{
+        res.status(500).json('Error adding new note')
+    }
 
-// })
+})
 
 app.get('*', (req, res) => 
     res.sendFile(path.join(__dirname), '/public/index.html'))
